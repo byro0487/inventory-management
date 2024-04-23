@@ -8,9 +8,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+/**
+ * Utility class for creating tables in an H2 database.
+ * This class provides methods to initialize the database schema for an inventory management system.
+ */
 public class H2TableCreator {
-
+    /**
+     * Creates tables in the database using SQL scripts.
+     * This method establishes a connection to the database, loads the JDBC driver,
+     * and executes SQL scripts from specified files.
+     */
     public static void createTables() {
         String jdbcUrl = Configurations.DB_CONNECTION_URL;
         String username = Configurations.DB_USER_NAME;
@@ -38,7 +45,12 @@ public class H2TableCreator {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Executes SQL statements read from a file.
+     * @param stmt The statement object used for executing the SQL queries.
+     * @param filePath The path to the SQL file containing the queries.
+     * @throws SQLException If an SQL error occurs during query execution.
+     */
     private static void executeSqlFromFile(Statement stmt, String filePath) throws SQLException {
         try (BufferedReader reader = new BufferedReader(new FileReader("/Users/venu/Downloads/inventory-manegement/src/main/resources/schema/"+filePath))) {
             StringBuilder sqlStatements = new StringBuilder();

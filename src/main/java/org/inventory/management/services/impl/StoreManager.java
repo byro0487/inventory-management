@@ -12,13 +12,23 @@ import org.inventory.management.models.Store;
 import org.inventory.management.models.StoreProduct;
 import org.inventory.management.repository.interfaces.IRepository;
 import org.inventory.management.services.interfaces.IStoreManager;
-
+/**
+ * Manages store operations including adding stores and retrieving store details.
+ * This class handles business logic associated with store management and delegates
+ * data persistence to the {@link IRepository} interface.
+ */
 @Slf4j
 @Setter
 public class StoreManager implements IStoreManager {
     IStoreValidator validator;
     IRepository repository;
-
+    /**
+     * Adds a new store based on the provided request.
+     * This method handles locking to ensure that store creation does not conflict with other operations.
+     *
+     * @param request The store addition request containing store details.
+     * @return A response indicating success or failure of the add operation.
+     */
     @Override
     public StoreManagementServiceOuterClass.AddStoreResponse addStore(StoreManagementServiceOuterClass.AddStoreRequest request) {
         StoreManagementServiceOuterClass.AddStoreResponse response= StoreManagementServiceOuterClass.AddStoreResponse.getDefaultInstance();
@@ -58,7 +68,12 @@ public class StoreManager implements IStoreManager {
         log.info("Completed addStore request with store name: {} with response: {}",request.getStore().getName(),response);
         return response;
     }
-
+    /**
+     * Retrieves a store by its ID.
+     *
+     * @param storeId The unique identifier of the store to retrieve.
+     * @return The store corresponding to the provided ID.
+     */
     @Override
     public Store getStore(String storeId) {
         return (Store) repository.get(storeId);

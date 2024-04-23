@@ -1,3 +1,37 @@
+# Inventory Management:
+### Service Architecture Overview
+
+Our service is built as a gRPC server instead of a traditional REST controller to take advantage of the HTTP/2 protocol and Protocol Buffers (protobuf) for efficient communication and serialization.
+
+### Proto Contracts
+
+The service contracts are defined in three separate protobuf files:
+
+- [InventoryManagementService.proto](..%2F..%2F..%2F..%2Fproto%2FInventoryManagementService.proto)
+- [ProductManagementService.proto](..%2F..%2F..%2F..%2Fproto%2FProductManagementService.proto)
+- [StoreManagementService.proto](..%2F..%2F..%2F..%2Fproto%2FStoreManagementService.proto)
+
+### Authentication and Authorization
+
+We have implemented authentication and authorization using JWT tokens. This is handled by a server interceptor, which ensures that only authenticated and authorized requests are processed by the server.
+
+### Database
+
+For the time being, we are using H2 as our RDBMS. However, this can be easily replaced by PostgreSQL in a production environment.
+
+### Code Comments
+
+We have added comments to each important class and method to ensure easy understanding and maintainability of the codebase.
+### Steps to Test:
+
+1. **Run the Application**: Start the gRPC server by running the `main` method. You can execute it as you would a simple Java application.
+
+2. **Use [BloomRPC](https://github.com/bloomrpc/bloomrpc/releases) as Client**: Instead of Postman, utilize BloomRPC as the client for making gRPC requests. Import the proto files into BloomRPC and include the "Authorization" header with the JWT token value in the metadata to authenticate and authorize requests.
+
+3. **Use Auth Service for JWT Tokens**: We have included a dummy auth service that provides JWT tokens. You can utilize this service by referencing the `AuthService.proto` file.
+
+## Low Level Design approach :
+
 ## Entities:
 
 - Guest
@@ -176,4 +210,10 @@
 - Factory Method for creating Managers and restockAlgorithms.
 - Builder for creating objects.
 - Use association for structuring managers.
+
+## Few Other points which are not considered:
+- Inward register
+- Outward register
+- Invoice management
+- stock return reason and details
 

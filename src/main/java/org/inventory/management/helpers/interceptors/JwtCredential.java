@@ -27,19 +27,27 @@ import org.inventory.management.config.Configurations;
 import java.util.concurrent.Executor;
 
 /**
- * CallCredentials implementation, which carries the JWT value that will be propagated to the
- * server in the request metadata with the "Authorization" key and the "Bearer" prefix.
+ * Provides JWT-based credentials for gRPC calls. This class encapsulates the generation
+ * and formatting of a JWT token using a specified subject.
  */
 public class JwtCredential {
-
+    // The subject for which the JWT is generated.
     private final String subject;
-
+    // The JWT token formatted as 'Bearer {token}'.
     @Getter
     public String token;
+    /**
+     * Constructs a JwtCredential instance for the specified subject.
+     * @param subject the subject to be used in the JWT.
+     */
     public JwtCredential(String subject) {
         this.subject = subject;
         this.token = getTokenData();
     }
+    /**
+     * Generates a JWT token, signs it with the configured key, and formats it with the 'Bearer' prefix.
+     * @return the formatted JWT token.
+     */
     private String getTokenData() {
 
         final String jwt =

@@ -12,7 +12,11 @@ import org.inventory.management.models.Store;
 import org.inventory.management.repository.interfaces.IRepository;
 import org.inventory.management.services.interfaces.IInventoryStoreManager;
 import org.inventory.management.services.interfaces.IStoreManager;
-
+/**
+ * Manages inventory store operations including adding stores to inventory.
+ * This class is responsible for handling business logic associated with inventory management.
+ * It utilizes locking mechanisms to ensure thread safety during concurrent data modifications.
+ */
 @Slf4j
 @Setter
 public class InventoryStoreManager implements IInventoryStoreManager {
@@ -22,7 +26,15 @@ public class InventoryStoreManager implements IInventoryStoreManager {
     IRepository repository;
 
 
-
+    /**
+     * Adds a store to an inventory based on the provided request.
+     * This method first acquires a lock based on inventory and store IDs to prevent concurrent modifications.
+     * It validates the request, retrieves the store details, and updates the inventory store information.
+     * If any step fails, it responds with an appropriate error.
+     *
+     * @param request The request containing details needed to add a store to an inventory.
+     * @return A response indicating the success or failure of the operation along with relevant messages.
+     */
     @Override
     public InventoryManagementServiceOuterClass.AddStoreToInventoryResponse addStoreToInventory(InventoryManagementServiceOuterClass.AddStoreToInventoryRequest request) {
         InventoryManagementServiceOuterClass.AddStoreToInventoryResponse response= InventoryManagementServiceOuterClass.AddStoreToInventoryResponse.getDefaultInstance();

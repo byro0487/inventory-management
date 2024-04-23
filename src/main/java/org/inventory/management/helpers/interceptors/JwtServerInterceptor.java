@@ -3,10 +3,22 @@ package org.inventory.management.helpers.interceptors;
 import io.grpc.*;
 import io.jsonwebtoken.*;
 import org.inventory.management.config.Configurations;
-
+/**
+ * Interceptor for JWT-based authentication on gRPC server calls.
+ * This interceptor extracts the JWT token from the metadata, validates it,
+ * and sets the user's client ID in the context if the token is valid.
+ */
 public class JwtServerInterceptor  implements ServerInterceptor{
 
     private final JwtParser parser = Jwts.parser().setSigningKey(Configurations.JWT_SIGNING_KEY);
+    /**
+     * Intercepts the incoming server call to perform JWT authentication.
+     *
+     * @param serverCall the server call being intercepted
+     * @param metadata the metadata associated with the call
+     * @param serverCallHandler the handler for the call
+     * @return a listener for the call, either continuing the call chain or terminating it if authentication fails
+     */
     @Override
     public <ReqT, RespT> ServerCall.Listener<ReqT> interceptCall(ServerCall<ReqT, RespT> serverCall, Metadata metadata, ServerCallHandler<ReqT, RespT> serverCallHandler) {
         // Note:

@@ -21,6 +21,14 @@ public class InventoryManager implements IInventoryManager {
     IProductManager productManager;
     IStoreProductManager storeProductManager;
 
+    /**
+     * Retrieves the inventory details for a specific product in a specified store.
+     * This method checks product existence and then fetches its inventory details.
+     *
+     * @param request The inventory view request containing identifiers for the store and the product.
+     * @return A response object that indicates the success or failure of the operation.
+     *         If successful, it includes product details and the available quantity.
+     */
     @Override
     public InventoryManagementServiceOuterClass.ViewInventoryResponse viewInventory(InventoryManagementServiceOuterClass.ViewInventoryRequest request) {
         InventoryManagementServiceOuterClass.ViewInventoryResponse response= InventoryManagementServiceOuterClass.ViewInventoryResponse.getDefaultInstance();
@@ -70,6 +78,13 @@ public class InventoryManager implements IInventoryManager {
         return response;
     }
 
+    /**
+     * Updates the inventory quantity for a specific product in a store based on the provided operation type (ADD or SUBTRACT).
+     * This method handles locking to ensure that inventory updates are thread-safe and consistent.
+     *
+     * @param request The inventory update request containing store and product identifiers, operation type, and the quantity to update.
+     * @return A response object indicating success or failure of the update operation, and the updated quantity if successful.
+     */
     @Override
     public InventoryManagementServiceOuterClass.UpdateInventoryResponse updateInventory(InventoryManagementServiceOuterClass.UpdateInventoryRequest request) {
         InventoryManagementServiceOuterClass.UpdateInventoryResponse response= InventoryManagementServiceOuterClass.UpdateInventoryResponse.getDefaultInstance();
@@ -149,6 +164,13 @@ public class InventoryManager implements IInventoryManager {
         return response;
     }
 
+    /**
+     * Initiates a restocking process for inventory based on predefined restocking strategies.
+     * This method also handles locking to prevent concurrent restocking processes.
+     *
+     * @param request The restock inventory request containing a unique request identifier.
+     * @return A response object indicating the success or failure of the restocking process.
+     */
     @Override
     public InventoryManagementServiceOuterClass.RestockInventoryResponse restockInventory(InventoryManagementServiceOuterClass.RestockInventoryRequest request) {
         InventoryManagementServiceOuterClass.RestockInventoryResponse response= InventoryManagementServiceOuterClass.RestockInventoryResponse.getDefaultInstance();
@@ -184,6 +206,15 @@ public class InventoryManager implements IInventoryManager {
         return response;
     }
 
+    /**
+     * Determines the appropriate {@link StoreProduct} instance based on the operation type specified in the request.
+     * If the operation type is ADD and the product does not exist in the store, a new StoreProduct instance is created.
+     *
+     * @param request The inventory update request containing the operation type.
+     * @param storeId The identifier of the store.
+     * @param productId The identifier of the product.
+     * @return The {@link StoreProduct} instance, either retrieved or newly created.
+     */
     private StoreProduct getStoreProductByOpType(InventoryManagementServiceOuterClass.UpdateInventoryRequest request, String storeId, String productId) {
         StoreProduct storeProduct = storeProductManager.getProduct(storeId, productId);
         if(BaseServiceOuterClass.OperationType.ADD == request.getType() && storeProduct==null ) {
