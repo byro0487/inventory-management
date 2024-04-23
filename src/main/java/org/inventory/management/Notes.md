@@ -8,7 +8,8 @@ Pending items:
 
 Db integration
 concurrency
-authentication and authorization - done
+authorization
+authentication - done
 advanced restocking strategy - done
 
 

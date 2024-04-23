@@ -6,9 +6,12 @@
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/helpers/factory/CreateStrategy.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/repository/impl/StoreRepository.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/helpers/validators/impl/ProductValidator.java
+/Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/helpers/interceptors/JwtServerInterceptor.java
 /Users/venu/Downloads/inventory-manegement/target/generated-sources/protobuf/java/im/BaseServiceOuterClass.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/strategies/impl/BudgetConsciousStrategy.java
+/Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/helpers/interceptors/JwtCredential.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/services/interfaces/IProductManager.java
+/Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/external/AuthService.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/strategies/impl/MarketingCampaignStrategy.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/models/InventoryStore.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/helpers/factory/CreateValidator.java
@@ -24,11 +27,13 @@
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/services/interfaces/IStoreManager.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/strategies/impl/ContinuousReplenishmentStrategy.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/constants/ProductCategory.java
+/Users/venu/Downloads/inventory-manegement/target/generated-sources/protobuf/grpc-java/im/AuthServiceGrpc.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/constants/EntityStatus.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/services/impl/InventoryStoreManager.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/helpers/validators/interfaces/IInventoryValidator.java
 /Users/venu/Downloads/inventory-manegement/target/generated-sources/protobuf/grpc-java/im/BaseServiceGrpc.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/controllers/ProductManagementImpl.java
+/Users/venu/Downloads/inventory-manegement/target/generated-sources/protobuf/java/im/AuthServiceOuterClass.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/repository/impl/InventoryStoreRepository.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/strategies/impl/SeasonalDemandStrategy.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/strategies/interfaces/IRestockingStrategy.java
@@ -48,6 +53,7 @@
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/controllers/InventoryManagementImpl.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/helpers/ErrorResponses.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/services/impl/InventoryManager.java
+/Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/config/Configurations.java
 /Users/venu/Downloads/inventory-manegement/target/generated-sources/protobuf/java/im/ProductManagementServiceOuterClass.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/services/interfaces/IStoreProductManager.java
 /Users/venu/Downloads/inventory-manegement/target/generated-sources/protobuf/grpc-java/im/StoreManagementServiceGrpc.java
@@ -55,6 +61,7 @@
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/services/impl/ProductManager.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/strategies/impl/PeriodicReviewStrategy.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/services/impl/StoreProductManager.java
+/Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/controllers/AuthServiceImpl.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/models/StoreProduct.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/models/RestockingContext.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/models/Product.java
