@@ -4,6 +4,7 @@ import im.BaseServiceOuterClass;
 import im.InventoryManagementServiceOuterClass;
 import lombok.Setter;
 import org.inventory.management.helpers.ErrorResponses;
+import org.inventory.management.helpers.LockManager;
 import org.inventory.management.helpers.validators.interfaces.IInventoryValidator;
 import org.inventory.management.models.InventoryStore;
 import org.inventory.management.models.Store;
@@ -24,7 +25,14 @@ public class InventoryStoreManager implements IInventoryStoreManager {
     @Override
     public InventoryManagementServiceOuterClass.AddStoreToInventoryResponse addStoreToInventory(InventoryManagementServiceOuterClass.AddStoreToInventoryRequest request) {
         InventoryManagementServiceOuterClass.AddStoreToInventoryResponse response= InventoryManagementServiceOuterClass.AddStoreToInventoryResponse.getDefaultInstance();
+        String lockKey = request.getInventoryId()+request.getStoreId();
         try{
+            if(!LockManager.acquireLock(lockKey)){
+                response = response.toBuilder()
+                        .setIsSuccess(false)
+                        .setError(ErrorResponses.duplicateRequest())
+                        .build();
+            }
             validator.validateAddStoreToInventoryRequest(request);
 
             String storeId = request.getStoreId();
@@ -62,6 +70,9 @@ public class InventoryStoreManager implements IInventoryStoreManager {
                             .setType(BaseServiceOuterClass.ErrorType.INTERNAL_SERVER_ERROR)
                             .build())
                     .build();
+        }
+        finally {
+            LockManager.releaseLock(lockKey);
         }
         return response;
     }

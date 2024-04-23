@@ -4,6 +4,7 @@ import im.BaseServiceOuterClass;
 import im.InventoryManagementServiceOuterClass;
 import lombok.Setter;
 import org.inventory.management.helpers.ErrorResponses;
+import org.inventory.management.helpers.LockManager;
 import org.inventory.management.helpers.validators.interfaces.IInventoryValidator;
 import org.inventory.management.models.Product;
 import org.inventory.management.models.StoreProduct;
@@ -66,7 +67,14 @@ public class InventoryManager implements IInventoryManager {
     @Override
     public InventoryManagementServiceOuterClass.UpdateInventoryResponse updateInventory(InventoryManagementServiceOuterClass.UpdateInventoryRequest request) {
         InventoryManagementServiceOuterClass.UpdateInventoryResponse response= InventoryManagementServiceOuterClass.UpdateInventoryResponse.getDefaultInstance();
+        String lockKey = request.getStoreId()+":"+request.getProductId();
         try{
+            if(!LockManager.acquireLock(lockKey)){
+                response = response.toBuilder()
+                        .setIsSuccess(false)
+                        .setError(ErrorResponses.duplicateRequest())
+                        .build();
+            }
             validator.validateUpdateInventoryRequest(request);
             String storeId = request.getStoreId();
             String productId = request.getProductId();
@@ -122,6 +130,8 @@ public class InventoryManager implements IInventoryManager {
                             .setType(BaseServiceOuterClass.ErrorType.INTERNAL_SERVER_ERROR)
                             .build())
                     .build();
+        }finally {
+            LockManager.releaseLock(lockKey);
         }
         return response;
     }
@@ -129,7 +139,14 @@ public class InventoryManager implements IInventoryManager {
     @Override
     public InventoryManagementServiceOuterClass.RestockInventoryResponse restockInventory(InventoryManagementServiceOuterClass.RestockInventoryRequest request) {
         InventoryManagementServiceOuterClass.RestockInventoryResponse response= InventoryManagementServiceOuterClass.RestockInventoryResponse.getDefaultInstance();
+        String lockKey = "RESTOCK_INVENTORY";
         try{
+            if(!LockManager.acquireLock(lockKey)){
+                response = response.toBuilder()
+                        .setIsSuccess(false)
+                        .setError(ErrorResponses.duplicateRequest())
+                        .build();
+            }
             restockingManager.restockInventory();
             response = response.toBuilder()
                     .setIsSuccess(true)
@@ -143,6 +160,9 @@ public class InventoryManager implements IInventoryManager {
                             .setType(BaseServiceOuterClass.ErrorType.INTERNAL_SERVER_ERROR)
                             .build())
                     .build();
+        }
+        finally {
+            LockManager.releaseLock(lockKey);
         }
         return response;
     }

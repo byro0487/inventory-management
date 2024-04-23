@@ -3,6 +3,8 @@ package org.inventory.management.services.impl;
 import im.BaseServiceOuterClass;
 import im.StoreManagementServiceOuterClass;
 import lombok.Setter;
+import org.inventory.management.helpers.ErrorResponses;
+import org.inventory.management.helpers.LockManager;
 import org.inventory.management.helpers.validators.interfaces.IStoreValidator;
 import org.inventory.management.models.Product;
 import org.inventory.management.models.Store;
@@ -18,7 +20,15 @@ public class StoreManager implements IStoreManager {
     @Override
     public StoreManagementServiceOuterClass.AddStoreResponse addStore(StoreManagementServiceOuterClass.AddStoreRequest request) {
         StoreManagementServiceOuterClass.AddStoreResponse response= StoreManagementServiceOuterClass.AddStoreResponse.getDefaultInstance();
+        String lockKey = request.getStore().getName();
         try{
+            if(!LockManager.acquireLock(lockKey)){
+                response = response.toBuilder()
+                        .setIsSuccess(false)
+                        .setError(ErrorResponses.duplicateRequest())
+                        .build();
+            }
+
             validator.validateAddStoreRequest(request);
             Store store = Store.fromGRPC(request.getStore());
             Store createdStore = (Store) repository.add(store);
@@ -36,6 +46,9 @@ public class StoreManager implements IStoreManager {
                             .setType(BaseServiceOuterClass.ErrorType.INTERNAL_SERVER_ERROR)
                             .build())
                     .build();
+        }
+        finally {
+            LockManager.releaseLock(lockKey);
         }
         return response;
     }

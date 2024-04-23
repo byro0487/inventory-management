@@ -18,4 +18,11 @@ public class ErrorResponses {
                 .build();
     }
 
+    public static BaseServiceOuterClass.Error duplicateRequest(){
+        return BaseServiceOuterClass.Error.newBuilder()
+                .setMessage("Duplicate request!!. A request is already in progress for this entity")
+                .setType(BaseServiceOuterClass.ErrorType.BAD_REQUEST)
+                .build();
+    }
+
 }
