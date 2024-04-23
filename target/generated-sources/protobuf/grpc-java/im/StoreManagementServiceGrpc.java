@@ -46,68 +46,6 @@ public final class StoreManagementServiceGrpc {
     return getAddStoreMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<im.StoreManagementServiceOuterClass.AssignStoreManagerRequest,
-      im.StoreManagementServiceOuterClass.AssignStoreManagerResponse> getAssignStoreManagerMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "assignStoreManager",
-      requestType = im.StoreManagementServiceOuterClass.AssignStoreManagerRequest.class,
-      responseType = im.StoreManagementServiceOuterClass.AssignStoreManagerResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<im.StoreManagementServiceOuterClass.AssignStoreManagerRequest,
-      im.StoreManagementServiceOuterClass.AssignStoreManagerResponse> getAssignStoreManagerMethod() {
-    io.grpc.MethodDescriptor<im.StoreManagementServiceOuterClass.AssignStoreManagerRequest, im.StoreManagementServiceOuterClass.AssignStoreManagerResponse> getAssignStoreManagerMethod;
-    if ((getAssignStoreManagerMethod = StoreManagementServiceGrpc.getAssignStoreManagerMethod) == null) {
-      synchronized (StoreManagementServiceGrpc.class) {
-        if ((getAssignStoreManagerMethod = StoreManagementServiceGrpc.getAssignStoreManagerMethod) == null) {
-          StoreManagementServiceGrpc.getAssignStoreManagerMethod = getAssignStoreManagerMethod =
-              io.grpc.MethodDescriptor.<im.StoreManagementServiceOuterClass.AssignStoreManagerRequest, im.StoreManagementServiceOuterClass.AssignStoreManagerResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "assignStoreManager"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  im.StoreManagementServiceOuterClass.AssignStoreManagerRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  im.StoreManagementServiceOuterClass.AssignStoreManagerResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new StoreManagementServiceMethodDescriptorSupplier("assignStoreManager"))
-              .build();
-        }
-      }
-    }
-    return getAssignStoreManagerMethod;
-  }
-
-  private static volatile io.grpc.MethodDescriptor<im.StoreManagementServiceOuterClass.GetStoreManagerRequest,
-      im.StoreManagementServiceOuterClass.GetStoreManagerResponse> getGetStoreManagerMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "getStoreManager",
-      requestType = im.StoreManagementServiceOuterClass.GetStoreManagerRequest.class,
-      responseType = im.StoreManagementServiceOuterClass.GetStoreManagerResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<im.StoreManagementServiceOuterClass.GetStoreManagerRequest,
-      im.StoreManagementServiceOuterClass.GetStoreManagerResponse> getGetStoreManagerMethod() {
-    io.grpc.MethodDescriptor<im.StoreManagementServiceOuterClass.GetStoreManagerRequest, im.StoreManagementServiceOuterClass.GetStoreManagerResponse> getGetStoreManagerMethod;
-    if ((getGetStoreManagerMethod = StoreManagementServiceGrpc.getGetStoreManagerMethod) == null) {
-      synchronized (StoreManagementServiceGrpc.class) {
-        if ((getGetStoreManagerMethod = StoreManagementServiceGrpc.getGetStoreManagerMethod) == null) {
-          StoreManagementServiceGrpc.getGetStoreManagerMethod = getGetStoreManagerMethod =
-              io.grpc.MethodDescriptor.<im.StoreManagementServiceOuterClass.GetStoreManagerRequest, im.StoreManagementServiceOuterClass.GetStoreManagerResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "getStoreManager"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  im.StoreManagementServiceOuterClass.GetStoreManagerRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  im.StoreManagementServiceOuterClass.GetStoreManagerResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new StoreManagementServiceMethodDescriptorSupplier("getStoreManager"))
-              .build();
-        }
-      }
-    }
-    return getGetStoreManagerMethod;
-  }
-
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -157,24 +95,15 @@ public final class StoreManagementServiceGrpc {
   public interface AsyncService {
 
     /**
+     * <pre>
+     * this is additional rpc that would be required later
+     * rpc assignStoreManager(AssignStoreManagerRequest) returns (AssignStoreManagerResponse);
+     * rpc getStoreManager(GetStoreManagerRequest) returns (GetStoreManagerResponse);
+     * </pre>
      */
     default void addStore(im.StoreManagementServiceOuterClass.AddStoreRequest request,
         io.grpc.stub.StreamObserver<im.StoreManagementServiceOuterClass.AddStoreResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getAddStoreMethod(), responseObserver);
-    }
-
-    /**
-     */
-    default void assignStoreManager(im.StoreManagementServiceOuterClass.AssignStoreManagerRequest request,
-        io.grpc.stub.StreamObserver<im.StoreManagementServiceOuterClass.AssignStoreManagerResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getAssignStoreManagerMethod(), responseObserver);
-    }
-
-    /**
-     */
-    default void getStoreManager(im.StoreManagementServiceOuterClass.GetStoreManagerRequest request,
-        io.grpc.stub.StreamObserver<im.StoreManagementServiceOuterClass.GetStoreManagerResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getGetStoreManagerMethod(), responseObserver);
     }
   }
 
@@ -206,27 +135,16 @@ public final class StoreManagementServiceGrpc {
     }
 
     /**
+     * <pre>
+     * this is additional rpc that would be required later
+     * rpc assignStoreManager(AssignStoreManagerRequest) returns (AssignStoreManagerResponse);
+     * rpc getStoreManager(GetStoreManagerRequest) returns (GetStoreManagerResponse);
+     * </pre>
      */
     public void addStore(im.StoreManagementServiceOuterClass.AddStoreRequest request,
         io.grpc.stub.StreamObserver<im.StoreManagementServiceOuterClass.AddStoreResponse> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getAddStoreMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     */
-    public void assignStoreManager(im.StoreManagementServiceOuterClass.AssignStoreManagerRequest request,
-        io.grpc.stub.StreamObserver<im.StoreManagementServiceOuterClass.AssignStoreManagerResponse> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getAssignStoreManagerMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     */
-    public void getStoreManager(im.StoreManagementServiceOuterClass.GetStoreManagerRequest request,
-        io.grpc.stub.StreamObserver<im.StoreManagementServiceOuterClass.GetStoreManagerResponse> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getGetStoreManagerMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -247,24 +165,15 @@ public final class StoreManagementServiceGrpc {
     }
 
     /**
+     * <pre>
+     * this is additional rpc that would be required later
+     * rpc assignStoreManager(AssignStoreManagerRequest) returns (AssignStoreManagerResponse);
+     * rpc getStoreManager(GetStoreManagerRequest) returns (GetStoreManagerResponse);
+     * </pre>
      */
     public im.StoreManagementServiceOuterClass.AddStoreResponse addStore(im.StoreManagementServiceOuterClass.AddStoreRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getAddStoreMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
-    public im.StoreManagementServiceOuterClass.AssignStoreManagerResponse assignStoreManager(im.StoreManagementServiceOuterClass.AssignStoreManagerRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getAssignStoreManagerMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
-    public im.StoreManagementServiceOuterClass.GetStoreManagerResponse getStoreManager(im.StoreManagementServiceOuterClass.GetStoreManagerRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getGetStoreManagerMethod(), getCallOptions(), request);
     }
   }
 
@@ -285,33 +194,20 @@ public final class StoreManagementServiceGrpc {
     }
 
     /**
+     * <pre>
+     * this is additional rpc that would be required later
+     * rpc assignStoreManager(AssignStoreManagerRequest) returns (AssignStoreManagerResponse);
+     * rpc getStoreManager(GetStoreManagerRequest) returns (GetStoreManagerResponse);
+     * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<im.StoreManagementServiceOuterClass.AddStoreResponse> addStore(
         im.StoreManagementServiceOuterClass.AddStoreRequest request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getAddStoreMethod(), getCallOptions()), request);
     }
-
-    /**
-     */
-    public com.google.common.util.concurrent.ListenableFuture<im.StoreManagementServiceOuterClass.AssignStoreManagerResponse> assignStoreManager(
-        im.StoreManagementServiceOuterClass.AssignStoreManagerRequest request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getAssignStoreManagerMethod(), getCallOptions()), request);
-    }
-
-    /**
-     */
-    public com.google.common.util.concurrent.ListenableFuture<im.StoreManagementServiceOuterClass.GetStoreManagerResponse> getStoreManager(
-        im.StoreManagementServiceOuterClass.GetStoreManagerRequest request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getGetStoreManagerMethod(), getCallOptions()), request);
-    }
   }
 
   private static final int METHODID_ADD_STORE = 0;
-  private static final int METHODID_ASSIGN_STORE_MANAGER = 1;
-  private static final int METHODID_GET_STORE_MANAGER = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -333,14 +229,6 @@ public final class StoreManagementServiceGrpc {
         case METHODID_ADD_STORE:
           serviceImpl.addStore((im.StoreManagementServiceOuterClass.AddStoreRequest) request,
               (io.grpc.stub.StreamObserver<im.StoreManagementServiceOuterClass.AddStoreResponse>) responseObserver);
-          break;
-        case METHODID_ASSIGN_STORE_MANAGER:
-          serviceImpl.assignStoreManager((im.StoreManagementServiceOuterClass.AssignStoreManagerRequest) request,
-              (io.grpc.stub.StreamObserver<im.StoreManagementServiceOuterClass.AssignStoreManagerResponse>) responseObserver);
-          break;
-        case METHODID_GET_STORE_MANAGER:
-          serviceImpl.getStoreManager((im.StoreManagementServiceOuterClass.GetStoreManagerRequest) request,
-              (io.grpc.stub.StreamObserver<im.StoreManagementServiceOuterClass.GetStoreManagerResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -367,20 +255,6 @@ public final class StoreManagementServiceGrpc {
               im.StoreManagementServiceOuterClass.AddStoreRequest,
               im.StoreManagementServiceOuterClass.AddStoreResponse>(
                 service, METHODID_ADD_STORE)))
-        .addMethod(
-          getAssignStoreManagerMethod(),
-          io.grpc.stub.ServerCalls.asyncUnaryCall(
-            new MethodHandlers<
-              im.StoreManagementServiceOuterClass.AssignStoreManagerRequest,
-              im.StoreManagementServiceOuterClass.AssignStoreManagerResponse>(
-                service, METHODID_ASSIGN_STORE_MANAGER)))
-        .addMethod(
-          getGetStoreManagerMethod(),
-          io.grpc.stub.ServerCalls.asyncUnaryCall(
-            new MethodHandlers<
-              im.StoreManagementServiceOuterClass.GetStoreManagerRequest,
-              im.StoreManagementServiceOuterClass.GetStoreManagerResponse>(
-                service, METHODID_GET_STORE_MANAGER)))
         .build();
   }
 
@@ -430,8 +304,6 @@ public final class StoreManagementServiceGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new StoreManagementServiceFileDescriptorSupplier())
               .addMethod(getAddStoreMethod())
-              .addMethod(getAssignStoreManagerMethod())
-              .addMethod(getGetStoreManagerMethod())
               .build();
         }
       }

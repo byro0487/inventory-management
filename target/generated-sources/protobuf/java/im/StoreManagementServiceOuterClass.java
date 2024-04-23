@@ -5908,13 +5908,9 @@ public final class StoreManagementServiceOuterClass {
       "tStoreManagerRequest\022\021\n\trequestId\030\001 \001(\t\022" +
       "\017\n\007storeId\030\002 \001(\t\"Y\n\027GetStoreManagerRespo" +
       "nse\022\021\n\tisSuccess\030\001 \001(\010\022\030\n\005error\030\002 \001(\0132\t." +
-      "im.Error\022\021\n\tmanagerId\030\003 \001(\t2\360\001\n\026StoreMan" +
-      "agementService\0225\n\010addStore\022\023.im.AddStore" +
-      "Request\032\024.im.AddStoreResponse\022S\n\022assignS" +
-      "toreManager\022\035.im.AssignStoreManagerReque" +
-      "st\032\036.im.AssignStoreManagerResponse\022J\n\017ge" +
-      "tStoreManager\022\032.im.GetStoreManagerReques" +
-      "t\032\033.im.GetStoreManagerResponseb\006proto3"
+      "im.Error\022\021\n\tmanagerId\030\003 \001(\t2O\n\026StoreMana" +
+      "gementService\0225\n\010addStore\022\023.im.AddStoreR" +
+      "equest\032\024.im.AddStoreResponseb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

@@ -4610,11 +4610,9 @@ public final class ProductManagementServiceOuterClass {
       "e\022\021\n\tisSuccess\030\001 \001(\010\022\030\n\005error\030\002 \001(\0132\t.im" +
       ".Error\022\021\n\tproductId\030\003 \001(\t*5\n\020SupplierCat" +
       "egory\022\n\n\006SILVER\020\000\022\010\n\004GOLD\020\001\022\013\n\007DIAMOND\020\002" +
-      "2\227\001\n\030ProductManagementService\022;\n\naddProd" +
-      "uct\022\025.im.AddProductRequest\032\026.im.AddProdu" +
-      "ctResponse\022>\n\013addSupplier\022\026.im.AddSuppli" +
-      "erRequest\032\027.im.AddSupplierResponseb\006prot" +
-      "o3"
+      "2W\n\030ProductManagementService\022;\n\naddProdu" +
+      "ct\022\025.im.AddProductRequest\032\026.im.AddProduc" +
+      "tResponseb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

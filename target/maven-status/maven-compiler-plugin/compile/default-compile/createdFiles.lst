@@ -119,7 +119,6 @@ im/BaseServiceOuterClass$Location$1.class
 org/inventory/management/repository/impl/ProductRepository.class
 im/BaseServiceOuterClass$OperationType.class
 org/inventory/management/repository/impl/InventoryStoreRepository.class
-org/inventory/management/db/DBConnection.class
 im/AuthServiceGrpc$1.class
 im/InventoryManagementServiceOuterClass$AddStoreToInventoryRequestOrBuilder.class
 im/AuthServiceGrpc$AuthServiceFileDescriptorSupplier.class

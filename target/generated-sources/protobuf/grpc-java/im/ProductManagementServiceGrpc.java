@@ -46,37 +46,6 @@ public final class ProductManagementServiceGrpc {
     return getAddProductMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<im.ProductManagementServiceOuterClass.AddSupplierRequest,
-      im.ProductManagementServiceOuterClass.AddSupplierResponse> getAddSupplierMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "addSupplier",
-      requestType = im.ProductManagementServiceOuterClass.AddSupplierRequest.class,
-      responseType = im.ProductManagementServiceOuterClass.AddSupplierResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<im.ProductManagementServiceOuterClass.AddSupplierRequest,
-      im.ProductManagementServiceOuterClass.AddSupplierResponse> getAddSupplierMethod() {
-    io.grpc.MethodDescriptor<im.ProductManagementServiceOuterClass.AddSupplierRequest, im.ProductManagementServiceOuterClass.AddSupplierResponse> getAddSupplierMethod;
-    if ((getAddSupplierMethod = ProductManagementServiceGrpc.getAddSupplierMethod) == null) {
-      synchronized (ProductManagementServiceGrpc.class) {
-        if ((getAddSupplierMethod = ProductManagementServiceGrpc.getAddSupplierMethod) == null) {
-          ProductManagementServiceGrpc.getAddSupplierMethod = getAddSupplierMethod =
-              io.grpc.MethodDescriptor.<im.ProductManagementServiceOuterClass.AddSupplierRequest, im.ProductManagementServiceOuterClass.AddSupplierResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "addSupplier"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  im.ProductManagementServiceOuterClass.AddSupplierRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  im.ProductManagementServiceOuterClass.AddSupplierResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new ProductManagementServiceMethodDescriptorSupplier("addSupplier"))
-              .build();
-        }
-      }
-    }
-    return getAddSupplierMethod;
-  }
-
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -131,13 +100,6 @@ public final class ProductManagementServiceGrpc {
         io.grpc.stub.StreamObserver<im.ProductManagementServiceOuterClass.AddProductResponse> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getAddProductMethod(), responseObserver);
     }
-
-    /**
-     */
-    default void addSupplier(im.ProductManagementServiceOuterClass.AddSupplierRequest request,
-        io.grpc.stub.StreamObserver<im.ProductManagementServiceOuterClass.AddSupplierResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getAddSupplierMethod(), responseObserver);
-    }
   }
 
   /**
@@ -174,14 +136,6 @@ public final class ProductManagementServiceGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getAddProductMethod(), getCallOptions()), request, responseObserver);
     }
-
-    /**
-     */
-    public void addSupplier(im.ProductManagementServiceOuterClass.AddSupplierRequest request,
-        io.grpc.stub.StreamObserver<im.ProductManagementServiceOuterClass.AddSupplierResponse> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getAddSupplierMethod(), getCallOptions()), request, responseObserver);
-    }
   }
 
   /**
@@ -205,13 +159,6 @@ public final class ProductManagementServiceGrpc {
     public im.ProductManagementServiceOuterClass.AddProductResponse addProduct(im.ProductManagementServiceOuterClass.AddProductRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getAddProductMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
-    public im.ProductManagementServiceOuterClass.AddSupplierResponse addSupplier(im.ProductManagementServiceOuterClass.AddSupplierRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getAddSupplierMethod(), getCallOptions(), request);
     }
   }
 
@@ -238,18 +185,9 @@ public final class ProductManagementServiceGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getAddProductMethod(), getCallOptions()), request);
     }
-
-    /**
-     */
-    public com.google.common.util.concurrent.ListenableFuture<im.ProductManagementServiceOuterClass.AddSupplierResponse> addSupplier(
-        im.ProductManagementServiceOuterClass.AddSupplierRequest request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getAddSupplierMethod(), getCallOptions()), request);
-    }
   }
 
   private static final int METHODID_ADD_PRODUCT = 0;
-  private static final int METHODID_ADD_SUPPLIER = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -271,10 +209,6 @@ public final class ProductManagementServiceGrpc {
         case METHODID_ADD_PRODUCT:
           serviceImpl.addProduct((im.ProductManagementServiceOuterClass.AddProductRequest) request,
               (io.grpc.stub.StreamObserver<im.ProductManagementServiceOuterClass.AddProductResponse>) responseObserver);
-          break;
-        case METHODID_ADD_SUPPLIER:
-          serviceImpl.addSupplier((im.ProductManagementServiceOuterClass.AddSupplierRequest) request,
-              (io.grpc.stub.StreamObserver<im.ProductManagementServiceOuterClass.AddSupplierResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -301,13 +235,6 @@ public final class ProductManagementServiceGrpc {
               im.ProductManagementServiceOuterClass.AddProductRequest,
               im.ProductManagementServiceOuterClass.AddProductResponse>(
                 service, METHODID_ADD_PRODUCT)))
-        .addMethod(
-          getAddSupplierMethod(),
-          io.grpc.stub.ServerCalls.asyncUnaryCall(
-            new MethodHandlers<
-              im.ProductManagementServiceOuterClass.AddSupplierRequest,
-              im.ProductManagementServiceOuterClass.AddSupplierResponse>(
-                service, METHODID_ADD_SUPPLIER)))
         .build();
   }
 
@@ -357,7 +284,6 @@ public final class ProductManagementServiceGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new ProductManagementServiceFileDescriptorSupplier())
               .addMethod(getAddProductMethod())
-              .addMethod(getAddSupplierMethod())
               .build();
         }
       }

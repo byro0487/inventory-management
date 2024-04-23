@@ -46,6 +46,7 @@ message GetStoreManagerResponse {
 
 service StoreManagementService {
   rpc addStore(AddStoreRequest) returns (AddStoreResponse);
-  rpc assignStoreManager(AssignStoreManagerRequest) returns (AssignStoreManagerResponse);
-  rpc getStoreManager(GetStoreManagerRequest) returns (GetStoreManagerResponse);
+  // this is additional rpc that would be required later
+  // rpc assignStoreManager(AssignStoreManagerRequest) returns (AssignStoreManagerResponse);
+  // rpc getStoreManager(GetStoreManagerRequest) returns (GetStoreManagerResponse);
 }

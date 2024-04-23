@@ -40,5 +40,7 @@ message AddProductResponse {
 
 service ProductManagementService {
   rpc addProduct (AddProductRequest) returns (AddProductResponse);
-  rpc addSupplier(AddSupplierRequest) returns (AddSupplierResponse);
+
+  // this is additional rpc that would be required later
+  // rpc addSupplier(AddSupplierRequest) returns (AddSupplierResponse);
 }

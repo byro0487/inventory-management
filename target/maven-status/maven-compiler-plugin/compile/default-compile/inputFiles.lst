@@ -12,7 +12,6 @@
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/strategies/impl/BudgetConsciousStrategy.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/helpers/interceptors/JwtCredential.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/services/interfaces/IProductManager.java
-/Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/db/DBConnection.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/external/AuthService.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/strategies/impl/MarketingCampaignStrategy.java
 /Users/venu/Downloads/inventory-manegement/src/main/java/org/inventory/management/models/InventoryStore.java
