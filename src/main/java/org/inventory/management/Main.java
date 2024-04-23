@@ -3,6 +3,7 @@ package org.inventory.management;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import org.inventory.management.controllers.AuthServiceImpl;
+import org.inventory.management.helpers.H2TableCreator;
 import org.inventory.management.helpers.factory.CreateController;
 import org.inventory.management.helpers.interceptors.JwtServerInterceptor;
 
@@ -13,7 +14,7 @@ public class Main {
     private static final int AUTH_SERVER_PORT = 8081;
     public static void main(String[] args) {
         try {
-
+            H2TableCreator.createTables();
             startAuthServer();
             Server server = ServerBuilder.forPort(IM_SERVER_PORT)
                     .addService(CreateController.createInventoryManagementImpl())

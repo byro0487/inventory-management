@@ -6,7 +6,6 @@ org/inventory/management/services/interfaces/IInventoryStoreManager.class
 org/inventory/management/repository/impl/StoreProductRepository.class
 im/InventoryManagementServiceOuterClass$RestockInventoryRequestOrBuilder.class
 im/StoreManagementServiceOuterClass$AddStoreRequest$1.class
-org/inventory/management/models/Supplier.class
 im/BaseServiceGrpc$AsyncService.class
 org/inventory/management/services/interfaces/IStoreManager.class
 im/ProductManagementServiceOuterClass.class
@@ -46,6 +45,7 @@ org/inventory/management/models/BaseModel.class
 im/StoreManagementServiceGrpc$StoreManagementServiceImplBase.class
 im/BaseServiceOuterClass$LocationOrBuilder.class
 org/inventory/management/config/Configurations.class
+org/inventory/management/helpers/DBHelper.class
 im/InventoryManagementServiceOuterClass$ViewInventoryRequest$Builder.class
 im/InventoryManagementServiceOuterClass$AddStoreToInventoryResponse$1.class
 im/StoreManagementServiceOuterClass.class
@@ -62,7 +62,6 @@ org/inventory/management/repository/impl/StoreRepository.class
 im/ProductManagementServiceGrpc$ProductManagementServiceMethodDescriptorSupplier.class
 im/BaseServiceOuterClass$ErrorType$1.class
 im/AuthServiceOuterClass$GetTokenResponseOrBuilder.class
-org/inventory/management/models/Supplier$SupplierBuilder.class
 im/AuthServiceGrpc$MethodHandlers.class
 im/InventoryManagementServiceOuterClass$ViewInventoryResponse.class
 im/BaseServiceGrpc$BaseServiceStub.class
@@ -96,13 +95,11 @@ im/BaseServiceOuterClass$ErrorType.class
 org/inventory/management/constants/SupplierType.class
 im/BaseServiceOuterClass$Status.class
 org/inventory/management/models/RestockingContext$RestockingContextBuilder.class
-org/inventory/management/repository/impl/SupplierRepository.class
 im/ProductManagementServiceGrpc$MethodHandlers.class
 org/inventory/management/controllers/StoreManagementImpl.class
 im/AuthServiceGrpc$AuthServiceFutureStub.class
 im/BaseServiceOuterClass$ErrorOrBuilder.class
 im/InventoryManagementServiceOuterClass$UpdateInventoryResponse$1.class
-org/inventory/management/models/Inventory$InventoryBuilder.class
 im/BaseServiceOuterClass$ProductCategory.class
 im/StoreManagementServiceOuterClass$Store.class
 org/inventory/management/helpers/validators/interfaces/IInventoryValidator.class
@@ -122,8 +119,8 @@ im/BaseServiceOuterClass$Location$1.class
 org/inventory/management/repository/impl/ProductRepository.class
 im/BaseServiceOuterClass$OperationType.class
 org/inventory/management/repository/impl/InventoryStoreRepository.class
+org/inventory/management/db/DBConnection.class
 im/AuthServiceGrpc$1.class
-org/inventory/management/models/Location$LocationBuilder.class
 im/InventoryManagementServiceOuterClass$AddStoreToInventoryRequestOrBuilder.class
 im/AuthServiceGrpc$AuthServiceFileDescriptorSupplier.class
 im/ProductManagementServiceOuterClass$AddSupplierRequest$Builder.class
@@ -138,7 +135,6 @@ im/ProductManagementServiceOuterClass$Supplier$Builder.class
 im/InventoryManagementServiceOuterClass$UpdateInventoryRequestOrBuilder.class
 org/inventory/management/controllers/InventoryManagementImpl.class
 im/AuthServiceOuterClass$GetTokenRequest$Builder.class
-org/inventory/management/models/Inventory.class
 org/inventory/management/models/Store$StoreBuilder.class
 im/InventoryManagementServiceGrpc$2.class
 org/inventory/management/models/InventoryStore$InventoryStoreBuilder.class
@@ -148,7 +144,6 @@ org/inventory/management/helpers/ErrorResponses.class
 org/inventory/management/helpers/factory/CreateManager.class
 im/BaseServiceOuterClass$Error$1.class
 org/inventory/management/models/StoreProduct.class
-org/inventory/management/models/Location.class
 im/StoreManagementServiceOuterClass$AssignStoreManagerRequestOrBuilder.class
 im/InventoryManagementServiceGrpc$MethodHandlers.class
 im/BaseServiceOuterClass$ProductOrBuilder.class
@@ -176,6 +171,7 @@ im/AuthServiceOuterClass$GetTokenRequestOrBuilder.class
 org/inventory/management/services/impl/InventoryStoreManager.class
 im/BaseServiceGrpc$MethodHandlers.class
 im/InventoryManagementServiceGrpc$InventoryManagementServiceImplBase.class
+org/inventory/management/helpers/H2TableCreator.class
 org/inventory/management/Main.class
 im/StoreManagementServiceOuterClass$Store$1.class
 org/inventory/management/models/StoreProduct$StoreProductBuilder.class
@@ -233,7 +229,6 @@ im/InventoryManagementServiceOuterClass$1.class
 im/BaseServiceOuterClass$Location$Builder.class
 im/InventoryManagementServiceOuterClass$RestockInventoryResponse.class
 im/AuthServiceOuterClass$GetTokenRequest$1.class
-org/inventory/management/repository/impl/LocationRepository.class
 im/AuthServiceGrpc$2.class
 im/ProductManagementServiceGrpc$3.class
 im/InventoryManagementServiceOuterClass$RestockInventoryRequest$Builder.class

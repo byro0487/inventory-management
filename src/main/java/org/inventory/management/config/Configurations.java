@@ -10,4 +10,9 @@ public class Configurations {
     public static final Metadata.Key<String> AUTHORIZATION_METADATA_KEY = Metadata.Key.of("Authorization", Metadata.ASCII_STRING_MARSHALLER);
     public static final Context.Key<String> CLIENT_ID_CONTEXT_KEY = Context.key("clientId");
 
+    public static final String DB_CONNECTION_URL = "jdbc:h2:mem:testdb";
+    public static final String DB_USER_NAME = "sa";
+    public static final String DB_PASSWORD = "";
+
+
 }

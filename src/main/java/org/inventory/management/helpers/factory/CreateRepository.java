@@ -8,9 +8,6 @@ public class CreateRepository {
     public static InventoryStoreRepository createInventoryStoreRepository(){
         return new InventoryStoreRepository();
     }
-    public static LocationRepository createLocationRepository(){
-        return new LocationRepository();
-    }
     public static ProductRepository createProductRepository(){
         return new ProductRepository();
     }
@@ -19,8 +16,5 @@ public class CreateRepository {
     }
     public static StoreRepository createStoreRepository(){
         return new StoreRepository();
-    }
-    public static SupplierRepository createSupplierRepository(){
-        return new SupplierRepository();
     }
 }
