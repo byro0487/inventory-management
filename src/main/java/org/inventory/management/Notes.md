@@ -7,11 +7,11 @@ stock return reason and details
 Pending items:
 
 Db integration - done
-concurrency - 
+concurrency - done
 authorization - done
 authentication - done
 advanced restocking strategy - done
-logger 
+logger - done
 
 
 Restocking strategy:

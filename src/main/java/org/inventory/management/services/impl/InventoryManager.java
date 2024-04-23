@@ -3,6 +3,7 @@ package org.inventory.management.services.impl;
 import im.BaseServiceOuterClass;
 import im.InventoryManagementServiceOuterClass;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 import org.inventory.management.helpers.ErrorResponses;
 import org.inventory.management.helpers.LockManager;
 import org.inventory.management.helpers.validators.interfaces.IInventoryValidator;
@@ -11,7 +12,7 @@ import org.inventory.management.models.StoreProduct;
 import org.inventory.management.services.interfaces.IInventoryManager;
 import org.inventory.management.services.interfaces.IProductManager;
 import org.inventory.management.services.interfaces.IStoreProductManager;
-
+@Slf4j
 @Setter
 public class InventoryManager implements IInventoryManager {
 
@@ -23,6 +24,7 @@ public class InventoryManager implements IInventoryManager {
     @Override
     public InventoryManagementServiceOuterClass.ViewInventoryResponse viewInventory(InventoryManagementServiceOuterClass.ViewInventoryRequest request) {
         InventoryManagementServiceOuterClass.ViewInventoryResponse response= InventoryManagementServiceOuterClass.ViewInventoryResponse.getDefaultInstance();
+        log.info("Started viewInventory request with storeId: {}",request.getStoreId());
         try{
             validator.validateViewInventoryRequest(request);
 
@@ -34,6 +36,7 @@ public class InventoryManager implements IInventoryManager {
                         .setIsSuccess(false)
                         .setError(ErrorResponses.noProductWithGivenId())
                         .build();
+                log.error("Error in viewInventory request with storeId: {} with response: {}",request.getStoreId(),response);
                 return response;
             }
 
@@ -43,6 +46,7 @@ public class InventoryManager implements IInventoryManager {
                         .setIsSuccess(false)
                         .setError(ErrorResponses.noProductInTheStore())
                         .build();
+                log.error("Error in viewInventory request with storeId: {} with response: {}",request.getStoreId(),response);
                 return response;
             }
 
@@ -60,7 +64,9 @@ public class InventoryManager implements IInventoryManager {
                             .setType(BaseServiceOuterClass.ErrorType.INTERNAL_SERVER_ERROR)
                             .build())
                     .build();
+            log.error("Error in viewInventory request with storeId: {} with response: {}",request.getStoreId(),response);
         }
+        log.info("Completed viewInventory request with storeId: {} with response: {}",request.getStoreId(),response);
         return response;
     }
 
@@ -68,12 +74,14 @@ public class InventoryManager implements IInventoryManager {
     public InventoryManagementServiceOuterClass.UpdateInventoryResponse updateInventory(InventoryManagementServiceOuterClass.UpdateInventoryRequest request) {
         InventoryManagementServiceOuterClass.UpdateInventoryResponse response= InventoryManagementServiceOuterClass.UpdateInventoryResponse.getDefaultInstance();
         String lockKey = request.getStoreId()+":"+request.getProductId();
+        log.info("Started updateInventory request with storeId: {}",request.getStoreId());
         try{
             if(!LockManager.acquireLock(lockKey)){
                 response = response.toBuilder()
                         .setIsSuccess(false)
                         .setError(ErrorResponses.duplicateRequest())
                         .build();
+                log.error("Error in updateInventory request with storeId: {} with response: {}",request.getStoreId(),response);
             }
             validator.validateUpdateInventoryRequest(request);
             String storeId = request.getStoreId();
@@ -84,6 +92,7 @@ public class InventoryManager implements IInventoryManager {
                         .setIsSuccess(false)
                         .setError(ErrorResponses.noProductWithGivenId())
                         .build();
+                log.error("Error in updateInventory request with storeId: {} with response: {}",request.getStoreId(),response);
                 return response;
             }
 
@@ -96,6 +105,7 @@ public class InventoryManager implements IInventoryManager {
                             .setIsSuccess(false)
                             .setError(ErrorResponses.noProductInTheStore())
                             .build();
+                    log.error("Error in updateInventory request with storeId: {} with response: {}",request.getStoreId(),response);
                     return response;
                 }
                 int currQuantity = storeProduct.getQuantity();
@@ -108,6 +118,7 @@ public class InventoryManager implements IInventoryManager {
                                     .setType(BaseServiceOuterClass.ErrorType.BAD_REQUEST)
                                     .build())
                             .build();
+                    log.error("Error in updateInventory request with storeId: {} with response: {}",request.getStoreId(),response);
                     return response;
                 }
                 storeProduct.setQuantity(storeProduct.getQuantity()-request.getQuantity());
@@ -130,9 +141,11 @@ public class InventoryManager implements IInventoryManager {
                             .setType(BaseServiceOuterClass.ErrorType.INTERNAL_SERVER_ERROR)
                             .build())
                     .build();
+            log.error("Error in updateInventory request with storeId: {} with response: {}",request.getStoreId(),response);
         }finally {
             LockManager.releaseLock(lockKey);
         }
+        log.info("Completed updateInventory request with storeId: {} with response: {}",request.getStoreId(),response);
         return response;
     }
 
@@ -140,12 +153,14 @@ public class InventoryManager implements IInventoryManager {
     public InventoryManagementServiceOuterClass.RestockInventoryResponse restockInventory(InventoryManagementServiceOuterClass.RestockInventoryRequest request) {
         InventoryManagementServiceOuterClass.RestockInventoryResponse response= InventoryManagementServiceOuterClass.RestockInventoryResponse.getDefaultInstance();
         String lockKey = "RESTOCK_INVENTORY";
+        log.info("Started restockInventory request with requestId: {}",request.getRequestId());
         try{
             if(!LockManager.acquireLock(lockKey)){
                 response = response.toBuilder()
                         .setIsSuccess(false)
                         .setError(ErrorResponses.duplicateRequest())
                         .build();
+                log.error("Error in restockInventory request with requestId: {} with response: {}",request.getRequestId(),response);
             }
             restockingManager.restockInventory();
             response = response.toBuilder()
@@ -160,10 +175,12 @@ public class InventoryManager implements IInventoryManager {
                             .setType(BaseServiceOuterClass.ErrorType.INTERNAL_SERVER_ERROR)
                             .build())
                     .build();
+            log.error("Error in restockInventory request with requestId: {} with response: {}",request.getRequestId(),response);
         }
         finally {
             LockManager.releaseLock(lockKey);
         }
+        log.info("Completed restockInventory request with requestId: {} with response: {}",request.getRequestId(),response);
         return response;
     }
 
