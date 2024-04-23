@@ -21,11 +21,11 @@ public class StoreProductRepository implements IRepository {
     private static final Logger logger = LoggerFactory.getLogger(StoreProductRepository.class);
 
     // SQL statements
-    private static final String SELECT_QUERY = "SELECT * FROM store_product WHERE id = ?";
-    private static final String INSERT_QUERY = "INSERT INTO store_product ( store_id, product_id, quantity) VALUES (?, ?, ?, ?)";
-    private static final String UPDATE_QUERY = "UPDATE store_product SET store_id = ?, product_id = ?, quantity = ? WHERE id = ?";
-    private static final String DELETE_QUERY = "DELETE FROM store_product WHERE id = ?";
-    private static final String SELECT_ALL_QUERY = "SELECT * FROM store_product";
+    private static final String SELECT_QUERY = "SELECT * FROM STORE_PRODUCT WHERE id = ?";
+    private static final String INSERT_QUERY = "INSERT INTO STORE_PRODUCT (id, store_id, product_id, quantity) VALUES (?, ?, ?, ?)";
+    private static final String UPDATE_QUERY = "UPDATE STORE_PRODUCT SET store_id = ?, product_id = ?, quantity = ? WHERE id = ?";
+    private static final String DELETE_QUERY = "DELETE FROM STORE_PRODUCT WHERE id = ?";
+    private static final String SELECT_ALL_QUERY = "SELECT * FROM STORE_PRODUCT";
 
     @Override
     public StoreProduct get(String id) {
@@ -52,12 +52,13 @@ public class StoreProductRepository implements IRepository {
         StoreProduct storeProduct = (StoreProduct) model;
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(INSERT_QUERY)) {
-            stmt.setString(1, storeProduct.getStoreId());
-            stmt.setString(2, storeProduct.getProductId());
-            stmt.setInt(3, storeProduct.getQuantity());
+            stmt.setString(1, storeProduct.getId());
+            stmt.setString(2, storeProduct.getStoreId());
+            stmt.setString(3, storeProduct.getProductId());
+            stmt.setInt(4, storeProduct.getQuantity());
             int rowsInserted = stmt.executeUpdate();
             if (rowsInserted > 0) {
-                return model;
+                return storeProduct;
             }
         } catch (SQLException e) {
             logger.error("Error occurred while adding StoreProduct: {}", storeProduct, e);

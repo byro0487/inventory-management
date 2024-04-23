@@ -18,12 +18,14 @@ public class Store extends BaseModel{
     String inventoryId;
 
     public static Store fromGRPC(StoreManagementServiceOuterClass.Store store){
-        return Store.builder()
+        Store s = Store.builder()
                 .name(store.getName())
                 .area(store.getArea())
                 .status(EntityStatus.valueOf(store.getStatus().toString()))
                 .locationId(store.getLocationId())
                 .managerId(store.getManagerId())
                 .build();
+        s.setId(store.getId());
+        return s;
     }
 }

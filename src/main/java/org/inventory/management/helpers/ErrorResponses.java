@@ -16,6 +16,16 @@ public class ErrorResponses {
                 .build();
     }
     /**
+     * Creates an error response indicating that no store exists with the given store ID.
+     * @return an error object specifying that the store ID is not found.
+     */
+    public static BaseServiceOuterClass.Error noStoreWithGivenId(){
+        return BaseServiceOuterClass.Error.newBuilder()
+                .setMessage("No Store exist with the given storeId")
+                .setType(BaseServiceOuterClass.ErrorType.BAD_REQUEST)
+                .build();
+    }
+    /**
      * Creates an error response indicating that no product is registered in the store with the given product ID.
      * @return an error object specifying that the product is not registered for the store.
      */
@@ -33,6 +43,13 @@ public class ErrorResponses {
     public static BaseServiceOuterClass.Error duplicateRequest(){
         return BaseServiceOuterClass.Error.newBuilder()
                 .setMessage("Duplicate request!!. A request is already in progress for this entity")
+                .setType(BaseServiceOuterClass.ErrorType.BAD_REQUEST)
+                .build();
+    }
+
+    public static BaseServiceOuterClass.Error alreadyExistsRequest(){
+        return BaseServiceOuterClass.Error.newBuilder()
+                .setMessage("A record already exists for this entity")
                 .setType(BaseServiceOuterClass.ErrorType.BAD_REQUEST)
                 .build();
     }

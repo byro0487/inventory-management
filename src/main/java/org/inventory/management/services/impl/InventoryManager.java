@@ -111,9 +111,10 @@ public class InventoryManager implements IInventoryManager {
                 return response;
             }
 
-            StoreProduct storeProduct = getStoreProductByOpType(request,storeId,productId);
+            StoreProduct storeProduct = storeProductManager.getProduct(storeId, productId);
             if(BaseServiceOuterClass.OperationType.ADD == request.getType()){
-                storeProduct.setQuantity(storeProduct.getQuantity()+request.getQuantity());
+                storeProduct = updateStateProductForADD(request, storeProduct, storeId, productId);
+
             }else{
                 if(storeProduct==null ){
                     response = response.toBuilder()
@@ -123,6 +124,7 @@ public class InventoryManager implements IInventoryManager {
                     log.error("Error in updateInventory request with storeId: {} with response: {}",request.getStoreId(),response);
                     return response;
                 }
+
                 int currQuantity = storeProduct.getQuantity();
 
                 if(currQuantity<request.getQuantity()){
@@ -137,9 +139,8 @@ public class InventoryManager implements IInventoryManager {
                     return response;
                 }
                 storeProduct.setQuantity(storeProduct.getQuantity()-request.getQuantity());
+                storeProduct = storeProductManager.updateProduct(storeProduct);
             }
-
-            storeProduct = storeProductManager.updateProduct(storeProduct);
 
             response = response.toBuilder()
                     .setIsSuccess(true)
@@ -222,6 +223,35 @@ public class InventoryManager implements IInventoryManager {
                     .storeId(storeId)
                     .productId(productId)
                     .build();
+            storeProduct.setId(storeId+":"+productId);
+        }
+        return storeProduct;
+    }
+
+    /**
+     * Updates or creates a {@link StoreProduct} instance for adding inventory.
+     * If the {@link StoreProduct} does not exist for the specified store and product IDs,
+     * a new instance is created with the initial quantity set to the quantity specified in the request.
+     * If the {@link StoreProduct} exists, the specified quantity is added to the existing quantity.
+     *
+     * @param request The inventory update request containing the operation type, store ID, product ID, and quantity.
+     * @param storeProduct The current {@link StoreProduct} instance, or null if it does not exist.
+     * @param storeId The identifier of the store.
+     * @param productId The identifier of the product.
+     * @return The updated or newly created {@link StoreProduct} instance.
+     */
+    private StoreProduct updateStateProductForADD(InventoryManagementServiceOuterClass.UpdateInventoryRequest request, StoreProduct storeProduct, String storeId, String productId) {
+        if(storeProduct ==null ) {
+            storeProduct = StoreProduct.builder()
+                    .storeId(storeId)
+                    .productId(productId)
+                    .quantity(request.getQuantity())
+                    .build();
+            storeProduct.setId(storeId +":"+ productId);
+            storeProduct = storeProductManager.addProduct(storeProduct);
+        }else{
+            storeProduct.setQuantity(storeProduct.getQuantity()+ request.getQuantity());
+            storeProduct = storeProductManager.updateProduct(storeProduct);
         }
         return storeProduct;
     }

@@ -22,10 +22,10 @@ public class InventoryStoreRepository implements IRepository {
     private static final Logger logger = LoggerFactory.getLogger(InventoryStoreRepository.class);
 
     // SQL statements
-    private static final String SELECT_QUERY = "SELECT * FROM inventory_store WHERE id = ?";
-    private static final String INSERT_QUERY = "INSERT INTO inventory_store ( inventory_id, store_id, manager_id) VALUES (?, ?, ?, ?)";
-    private static final String UPDATE_QUERY = "UPDATE inventory_store SET inventory_id = ?, store_id = ?, manager_id = ? WHERE id = ?";
-    private static final String DELETE_QUERY = "DELETE FROM inventory_store WHERE id = ?";
+    private static final String SELECT_QUERY = "SELECT * FROM INVENTORY_STORE WHERE id = ?";
+    private static final String INSERT_QUERY = "INSERT INTO INVENTORY_STORE ( id,inventory_id, store_id, manager_id) VALUES (?, ?, ?, ?)";
+    private static final String UPDATE_QUERY = "UPDATE INVENTORY_STORE SET inventory_id = ?, store_id = ?, manager_id = ? WHERE id = ?";
+    private static final String DELETE_QUERY = "DELETE FROM INVENTORY_STORE WHERE id = ?";
 
 
     @Override
@@ -53,12 +53,13 @@ public class InventoryStoreRepository implements IRepository {
         InventoryStore inventoryStore = (InventoryStore) model;
         try (Connection conn = DBHelper.getConnection();
              PreparedStatement stmt = conn.prepareStatement(INSERT_QUERY)) {
-            stmt.setString(1, inventoryStore.getInventoryId());
-            stmt.setString(2, inventoryStore.getStoreId());
-            stmt.setString(3, inventoryStore.getManagerId());
+            stmt.setString(1, inventoryStore.getId());
+            stmt.setString(2, inventoryStore.getInventoryId());
+            stmt.setString(3, inventoryStore.getStoreId());
+            stmt.setString(4, inventoryStore.getManagerId());
             int rowsInserted = stmt.executeUpdate();
             if (rowsInserted > 0) {
-                return model;
+                return inventoryStore;
             }
         } catch (SQLException e) {
             logger.error("Error occurred while adding InventoryStore with model: {}", inventoryStore, e);

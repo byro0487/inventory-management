@@ -30,13 +30,15 @@ public class Product extends BaseModel{
     }
 
     public static Product fromGRPC(BaseServiceOuterClass.Product product){
-        return Product.builder()
+        Product p = Product.builder()
                 .name(product.getName())
                 .description(product.getDescription())
                 .category(ProductCategory.valueOf(product.getCategory().toString()))
                 .unitPrice(product.getUnitPrice())
                 .supplierId(product.getSupplierId())
                 .build();
+        p.setId(product.getId());
+        return p;
     }
 
 }

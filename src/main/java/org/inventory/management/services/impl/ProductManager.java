@@ -42,10 +42,21 @@ public class ProductManager implements IProductManager {
                         .setError(ErrorResponses.duplicateRequest())
                         .build();
                 log.error("Error in addProduct request with product name: {} with response: {}",request.getProduct().getName(),response);
-
+                return response;
             }
             validator.validateAddProductRequest(request);
             Product product = Product.fromGRPC(request.getProduct());
+
+            boolean alreadyExists = repository.get(product.getId()) !=null;
+            if(alreadyExists){
+                response = response.toBuilder()
+                        .setIsSuccess(false)
+                        .setError(ErrorResponses.alreadyExistsRequest())
+                        .build();
+                log.error("Error in addProduct request with product name: {} with response: {}",request.getProduct().getId(),response);
+                return response;
+            }
+
             product = (Product) repository.add(product);
 
             response = response.toBuilder()

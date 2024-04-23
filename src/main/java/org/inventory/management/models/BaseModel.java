@@ -6,6 +6,8 @@ import lombok.*;
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
+@Getter
 public class BaseModel {
     String id;
     long createdOn;

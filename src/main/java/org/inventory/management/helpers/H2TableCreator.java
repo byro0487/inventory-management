@@ -4,10 +4,8 @@ import org.inventory.management.config.Configurations;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+
 /**
  * Utility class for creating tables in an H2 database.
  * This class provides methods to initialize the database schema for an inventory management system.
@@ -19,18 +17,8 @@ public class H2TableCreator {
      * and executes SQL scripts from specified files.
      */
     public static void createTables() {
-        String jdbcUrl = Configurations.DB_CONNECTION_URL;
-        String username = Configurations.DB_USER_NAME;
-        String password = Configurations.DB_PASSWORD;
 
-        // Load the H2 JDBC driver
-        try {
-            Class.forName("org.h2.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-        try (Connection conn = DriverManager.getConnection(jdbcUrl, username, password);
+        try (Connection conn = DBHelper.getConnection();
              Statement stmt = conn.createStatement()) {
 
             // Read SQL statements from files and execute them

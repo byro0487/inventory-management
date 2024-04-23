@@ -1,6 +1,7 @@
 package org.inventory.management.repository.impl;
 
 import org.inventory.management.constants.EntityStatus;
+import org.inventory.management.helpers.DBHelper;
 import org.inventory.management.models.BaseModel;
 import org.inventory.management.models.Store;
 import org.inventory.management.repository.interfaces.IRepository;
@@ -21,10 +22,10 @@ public class StoreRepository implements IRepository {
     private static final Logger logger = LoggerFactory.getLogger(StoreRepository.class);
 
     // SQL statements
-    private static final String SELECT_QUERY = "SELECT * FROM store WHERE id = ?";
-    private static final String INSERT_QUERY = "INSERT INTO store ( name, area, status, location_id, manager_id, inventory_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    private static final String UPDATE_QUERY = "UPDATE store SET name = ?, area = ?, status = ?, location_id = ?, manager_id = ?, inventory_id = ? WHERE id = ?";
-    private static final String DELETE_QUERY = "DELETE FROM store WHERE id = ?";
+    private static final String SELECT_QUERY = "SELECT * FROM STORE WHERE id = ?";
+    private static final String INSERT_QUERY = "INSERT INTO STORE ( id, name, area, status, location_id, manager_id, inventory_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    private static final String UPDATE_QUERY = "UPDATE STORE SET name = ?, area = ?, status = ?, location_id = ?, manager_id = ?, inventory_id = ? WHERE id = ?";
+    private static final String DELETE_QUERY = "DELETE FROM STORE WHERE id = ?";
     @Override
     public Store get(String id) {
         try (Connection conn = getConnection();
@@ -51,8 +52,9 @@ public class StoreRepository implements IRepository {
     @Override
     public BaseModel add(BaseModel model) {
         Store store = (Store) model;
-        try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(INSERT_QUERY)) {
+        try {
+            Connection conn = DBHelper.getConnection();
+            PreparedStatement stmt = conn.prepareStatement(INSERT_QUERY);
             stmt.setString(1, store.getId());
             stmt.setString(2, store.getName());
             stmt.setDouble(3, store.getArea());
@@ -62,7 +64,7 @@ public class StoreRepository implements IRepository {
             stmt.setString(7, store.getInventoryId());
             int rowsInserted = stmt.executeUpdate();
             if (rowsInserted > 0) {
-                return model;
+                return store;
             }
         } catch (SQLException e) {
             logger.error("Error occurred while adding Store: {}", store, e);

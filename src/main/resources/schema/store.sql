@@ -1,11 +1,11 @@
-CREATE TABLE Store (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE store (
+    id VARCHAR(255) PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     area DOUBLE NOT NULL,
     status VARCHAR(50),
-    locationId VARCHAR(255),
-    managerId VARCHAR(255),
-    inventoryId VARCHAR(255),
+    location_id VARCHAR(255),
+    manager_id VARCHAR(255),
+    inventory_id VARCHAR(255),
     createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );

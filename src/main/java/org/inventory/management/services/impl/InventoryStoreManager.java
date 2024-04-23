@@ -59,7 +59,7 @@ public class InventoryStoreManager implements IInventoryStoreManager {
             if(store==null){
                 response = response.toBuilder()
                         .setIsSuccess(false)
-                        .setError(ErrorResponses.noProductWithGivenId())
+                        .setError(ErrorResponses.noStoreWithGivenId())
                         .build();
                 log.error("Error in addStoreToInventory request with inventoryId: {} with response: {}",request.getInventoryId(),response);
                 return response;

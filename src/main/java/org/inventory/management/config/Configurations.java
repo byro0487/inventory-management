@@ -17,7 +17,7 @@ public class Configurations {
     /** Context key for storing client ID in gRPC context. */
     public static final Context.Key<String> CLIENT_ID_CONTEXT_KEY = Context.key("clientId");
     /** JDBC connection URL for the H2 in-memory database. */
-    public static final String DB_CONNECTION_URL = "jdbc:h2:mem:testdb";
+    public static final String DB_CONNECTION_URL = "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1";
     /** Default username for the database connection. */
     public static final String DB_USER_NAME = "sa";
     /** Default password for the database connection. */

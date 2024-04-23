@@ -41,10 +41,22 @@ public class StoreManager implements IStoreManager {
                         .setError(ErrorResponses.duplicateRequest())
                         .build();
                 log.error("Error in addStore request with store name: {} with response: {}",request.getStore().getName(),response);
+                return response;
             }
 
             validator.validateAddStoreRequest(request);
             Store store = Store.fromGRPC(request.getStore());
+
+            boolean alreadyExists = repository.get(request.getStore().getId()) !=null;
+            if(alreadyExists){
+                response = response.toBuilder()
+                        .setIsSuccess(false)
+                        .setError(ErrorResponses.alreadyExistsRequest())
+                        .build();
+                log.error("Error in addStore request with store name: {} with response: {}",request.getStore().getName(),response);
+                return response;
+            }
+
             Store createdStore = (Store) repository.add(store);
 
             response = response.toBuilder()

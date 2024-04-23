@@ -22,10 +22,10 @@ import static org.inventory.management.helpers.DBHelper.getConnection;
 
 public class ProductRepository implements IRepository {
     private static final Logger logger = LoggerFactory.getLogger(InventoryStoreRepository.class);
-    private static final String SELECT_QUERY = "SELECT * FROM product WHERE id = ?";
-    private static final String INSERT_QUERY = "INSERT INTO product ( name, description, category, unit_price, supplier_id) VALUES (?, ?, ?, ?, ?, ?)";
-    private static final String UPDATE_QUERY = "UPDATE product SET name = ?, description = ?, category = ?, unit_price = ?, supplier_id = ? WHERE id = ?";
-    private static final String DELETE_QUERY = "DELETE FROM product WHERE id = ?";
+    private static final String SELECT_QUERY = "SELECT * FROM PRODUCT WHERE id = ?";
+    private static final String INSERT_QUERY = "INSERT INTO PRODUCT ( id,name, description, category, unit_price, supplier_id) VALUES (?, ?, ?, ?, ?, ?)";
+    private static final String UPDATE_QUERY = "UPDATE PRODUCT SET name = ?, description = ?, category = ?, unit_price = ?, supplier_id = ? WHERE id = ?";
+    private static final String DELETE_QUERY = "DELETE FROM PRODUCT WHERE id = ?";
 
     @Override
     public BaseModel get(String id) {
@@ -54,14 +54,15 @@ public class ProductRepository implements IRepository {
         Product product =(Product) model;
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(INSERT_QUERY)) {
-            stmt.setString(1, product.getName());
-            stmt.setString(2, product.getDescription());
-            stmt.setString(3, product.getCategory().toString());
-            stmt.setDouble(4, product.getUnitPrice());
-            stmt.setString(5, product.getSupplierId());
+            stmt.setString(1, product.getId());
+            stmt.setString(2, product.getName());
+            stmt.setString(3, product.getDescription());
+            stmt.setString(4, product.getCategory().toString());
+            stmt.setDouble(5, product.getUnitPrice());
+            stmt.setString(6, product.getSupplierId());
             int rowsInserted = stmt.executeUpdate();
             if (rowsInserted > 0) {
-                return model;
+                return product;
             }
         } catch (SQLException e) {
             logger.error("Error occurred while adding Product: {}", model, e);
