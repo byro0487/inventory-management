@@ -1,0 +1,51 @@
+syntax = "proto3";
+import "BaseService.proto";
+package im;
+message Store{
+  string id= 1;
+  string name = 2;
+  string locationId=3;
+  double area=4;
+  Status status=5;
+  string managerId =6;
+}
+
+message AddStoreRequest {
+  string requestId= 1;
+  Store store = 2;
+}
+
+message AddStoreResponse {
+  bool isSuccess = 1;
+  Error error = 2;
+  string storeId = 3;
+}
+
+message AssignStoreManagerRequest {
+  string requestId= 1;
+  string storeId = 2;
+  string managerId = 3;
+}
+
+message AssignStoreManagerResponse {
+  bool isSuccess = 1;
+  Error error = 2;
+}
+
+message GetStoreManagerRequest {
+  string requestId= 1;
+  string storeId = 2;
+}
+
+message GetStoreManagerResponse {
+  bool isSuccess = 1;
+  Error error = 2;
+  string managerId = 3;
+}
+
+
+service StoreManagementService {
+  rpc addStore(AddStoreRequest) returns (AddStoreResponse);
+  rpc assignStoreManager(AssignStoreManagerRequest) returns (AssignStoreManagerResponse);
+  rpc getStoreManager(GetStoreManagerRequest) returns (GetStoreManagerResponse);
+}

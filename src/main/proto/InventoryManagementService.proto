@@ -1,0 +1,66 @@
+syntax = "proto3";
+import "BaseService.proto";
+package im;
+// Assumptions
+// there is only one inventory we are managing
+// we are considering there will be only one manager to a store.
+
+message AddStoreToInventoryRequest {
+  string requestId= 1;
+  string storeId =2;
+  string managerId=3;
+  string inventoryId=4;
+}
+
+message AddStoreToInventoryResponse {
+  bool isSuccess = 1;
+  Error error = 2;
+  string storeId =3;
+}
+
+message UpdateInventoryRequest {
+  string requestId= 1;
+  string storeId =2;
+  string productId =3;
+  int32 quantity =4;
+  OperationType type= 5;
+}
+
+message UpdateInventoryResponse {
+  bool isSuccess = 1;
+  Error error = 2;
+  string storeId =3;
+  string productId =4;
+  int32 updatedQuantity=5;
+}
+
+message ViewInventoryRequest {
+  string requestId= 1;
+  string productId =2;
+  string storeId =3;
+}
+
+message ViewInventoryResponse {
+  bool isSuccess = 1;
+  Error error = 2;
+  Product product=3;
+  int32 quantityAvailable=4;
+}
+
+message RestockInventoryRequest {
+  string requestId= 1;
+}
+
+message RestockInventoryResponse {
+  bool isSuccess = 1;
+  Error error = 2;
+}
+
+service InventoryManagementService {
+
+  rpc addStoreToInventory (AddStoreToInventoryRequest) returns (AddStoreToInventoryResponse) {}
+  rpc updateInventory (UpdateInventoryRequest) returns (UpdateInventoryResponse) {}
+  rpc viewInventory (ViewInventoryRequest) returns (ViewInventoryResponse) {}
+  rpc restockInventory (RestockInventoryRequest) returns (RestockInventoryResponse) {}
+
+}

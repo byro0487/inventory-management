@@ -1,0 +1,44 @@
+syntax = "proto3";
+import "BaseService.proto";
+package im;
+
+enum SupplierCategory{
+  SILVER=0;GOLD=1;DIAMOND=2;
+}
+
+message Supplier{
+  string id= 1;
+  string name = 2;
+  Location location=3;
+  int64 registeredAt=4;
+  SupplierCategory category=5;
+  Status status=6;
+}
+
+
+message AddSupplierRequest {
+  string requestId= 1;
+  Supplier supplier = 2;
+}
+
+message AddSupplierResponse {
+  bool isSuccess = 1;
+  Error error = 2;
+  Supplier supplier = 3;
+}
+
+message AddProductRequest {
+  string requestId= 1;
+  Product product =2;
+}
+
+message AddProductResponse {
+  bool isSuccess = 1;
+  Error error = 2;
+  string productId = 3;
+}
+
+service ProductManagementService {
+  rpc addProduct (AddProductRequest) returns (AddProductResponse);
+  rpc addSupplier(AddSupplierRequest) returns (AddSupplierResponse);
+}

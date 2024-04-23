@@ -1,0 +1,9 @@
+package org.inventory.management.services.interfaces;
+
+import im.InventoryManagementServiceOuterClass;
+
+public interface IInventoryManager {
+    InventoryManagementServiceOuterClass.ViewInventoryResponse viewInventory(InventoryManagementServiceOuterClass.ViewInventoryRequest request);
+    InventoryManagementServiceOuterClass.UpdateInventoryResponse updateInventory(InventoryManagementServiceOuterClass.UpdateInventoryRequest request);
+    InventoryManagementServiceOuterClass.RestockInventoryResponse restockInventory(InventoryManagementServiceOuterClass.RestockInventoryRequest request);
+}
